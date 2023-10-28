@@ -1,0 +1,23 @@
+import merge from 'lodash.merge';
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+const stage = process.env.STAGE || 'local';
+
+let envConfig;
+
+if (stage === 'production') {
+    envConfig = import('./prod.js').default;
+} else {
+    envConfig = import('./local.js').default;
+}
+
+export default merge({
+    stage,
+    env: process.env.NODE_ENV,
+    port: process.env.PORT,
+    secrets: {
+        jwt: process.env.JWT_SECRET,
+        dbURL: process.env.DATABASE_URL
+    }
+}, envConfig)
