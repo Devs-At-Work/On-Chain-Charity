@@ -34,11 +34,13 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', protect, router);
+
 app.use('/user', [
     check('username').isLength({ min: 4 }),
     check('email').isEmail(),
     check('password').isLength({ min: 8 })
 ], createNewUser);
+
 app.use('/signin',
     sigin);
 
@@ -55,5 +57,9 @@ app.use((err, req, res, next) => {
         res.status(500).json({ message: 'internal server error' })
     }
 })
+
+app.get('/protected-route', protect, (req, res) => {
+    res.json({ message: 'This route is protected.' });
+});
 
 export default app;

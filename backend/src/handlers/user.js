@@ -1,4 +1,3 @@
-
 import prisma from '../configs/db.js';
 import { comparePassword, hashPassword, createJWT } from '../modules/auth.js';
 import { validationResult } from 'express-validator';
