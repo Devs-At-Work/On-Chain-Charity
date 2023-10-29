@@ -24,6 +24,10 @@ model Project {
   createdAt   DateTime @default(now())
   name        String   @db.VarChar(255)
   belongsToID String
+  // targetFund
+// target Timeline
+
+  description String  @db.VarChar(255)
   belongsTo   User     @relation(fields: [belongsToID], references: [id])
 
   @@unique([id, belongsToID])
