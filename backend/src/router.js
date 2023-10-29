@@ -3,6 +3,8 @@ import { body } from "express-validator";
 
 const router = Router();
 
+// Routes for projects
+
 router.get('/project', )
 
 router.get('/project/:id',)
