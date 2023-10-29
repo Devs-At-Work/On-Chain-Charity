@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "./modules/middleware.js";
-import { getProjects, getProject, createProject, updateProject, deleteProject } from "./modules/project.js";
+import { getAllProjects, getProject, createProject, updateProject, deleteProject } from "./handlers/projects.js";
 
 const router = Router();
 
 // Routes for projects
 
-router.get('/project', getProjects)
+router.get('/project', getAllProjects)
 
 router.get('/project/:id', getProject)
 

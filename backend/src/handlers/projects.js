@@ -17,7 +17,7 @@ export const getAllProjects = async (req, res) => {
 }
 
 // GET project by id
-export const getProjectById = async (req, res) => {
+export const getProject = async (req, res) => {
     const project = await prisma.project.findFirst({
         where: {
             id: req.params.id,
@@ -31,7 +31,7 @@ export const getProjectById = async (req, res) => {
 }
 
 // POST a new project
-export const createNewProject = async (req, res) => {
+export const createProject = async (req, res) => {
     const project = await prisma.project.create({
         data: {
             name: req.body.name,
