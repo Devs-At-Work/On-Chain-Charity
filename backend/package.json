@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "test": "jest --watchAll --verbose",
     "dev": "node src/index.js",
     "start": "nodemon -L src/index.js"
   },
