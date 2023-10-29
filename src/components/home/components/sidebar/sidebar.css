@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Oxanium:400,500,600,700,800|Poppins:400,400i,500,500i,600,600i,700,700i&display=swap');
+@font-face {
+    font-family: 'koulen';
+    src: url('../../../../assets/fonts/Koulen.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.sidebar {
+    width: 15%;
+    background-color: #2A2C4C;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 20px;
+    height: 100%;
+  }
+
+  .sidebar {
+    font-family: "koulen";
+  }
