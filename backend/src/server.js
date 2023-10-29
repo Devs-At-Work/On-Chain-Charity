@@ -7,6 +7,12 @@ import { createNewUser, sigin } from './handlers/user.js';
 
 const app = express();
 
+// app.use(cors({
+//     origin: 'http://localhost:3000',
+//     optionsSuccessStatus: 200,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization']
+// }));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
