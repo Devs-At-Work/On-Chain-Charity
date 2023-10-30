@@ -4,4 +4,4 @@ export default {
       '^.+\\.js$': 'babel-jest',
     },
     testMatch: ['**/__tests__/**/*.test.js'],
-  };g
+  };
