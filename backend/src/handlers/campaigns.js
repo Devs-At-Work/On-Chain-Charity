@@ -1,24 +1,24 @@
 import prisma from "../configs/db.js";
 
-// GET all projects
-export const getAllProjects = async (req, res) => {
+// GET all campaigns
+export const getAllUserCampaigns = async (req, res) => {
     const user = await prisma.user.findUnique({
         where: {
             id: req.user.id
         },
         include: {
-            projects: true
+            campaigns: true
         }
     })
 
     res.json({
-        data: user.projects
+        data: user.campaigns
     })
 }
 
-// GET project by id
-export const getProject = async (req, res) => {
-    const project = await prisma.project.findFirst({
+// GET campaign by id
+export const getCampaign = async (req, res) => {
+    const campaign = await prisma.campaign.findFirst({
         where: {
             id: req.params.id,
             belongsToID: req.user.id
@@ -26,28 +26,29 @@ export const getProject = async (req, res) => {
     })
 
     res.json({
-        data: project
+        data: campaign
     })
 }
 
-// POST a new project
-export const createProject = async (req, res) => {
-    const project = await prisma.project.create({
+// POST a new campaign
+export const createCampaign = async (req, res) => {
+    const campaign = await prisma.campaign.create({
         data: {
             name: req.body.name,
             description: req.body.description,
-            belongsToID: req.user.id
+            belongsToID: req.user.id,
+            deadline: req.body.deadline
         }
     })
 
     res.json({
-        data: project
+        data: campaign
     })
 }
 
-// PUT updated data in a existing project
-export const updateProject = async (req, res) => {
-    const updated = await prisma.project.update({
+// PUT updated data in a existing campaign
+export const updateCampaign = async (req, res) => {
+    const updated = await prisma.campaign.update({
         where: {
             id_belongsToID: {
                 id: req.params.id,
@@ -56,7 +57,8 @@ export const updateProject = async (req, res) => {
         },
         data: {
             name: req.body.name,
-            description: req.body.description
+            description: req.body.description,
+            deadline: req.body.deadline
         }
     })
 
@@ -65,9 +67,9 @@ export const updateProject = async (req, res) => {
     })
 }
 
-// DELETE an existing project
-export const deleteProject = async (req, res) => {
-    const deleted = await prisma.project.delete({
+// DELETE an existing campaign
+export const deleteCampaign = async (req, res) => {
+    const deleted = await prisma.campaign.delete({
         where: {
             id_belongsToID: {
                 id: req.params.id,

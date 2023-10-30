@@ -16,16 +16,18 @@ model User {
   password  String
   email     String    @unique
   createdAt DateTime  @default(now())
-  projects  Project[]
+  campaigns  Campaign[]
 }
 
-model Project {
+model Campaign {
   id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
   name        String   @db.VarChar(255)
   belongsToID String
-  description String   @db.VarChar(255)
-  belongsTo   User     @relation(fields: [belongsToID], references: [id])
+  deadline    DateTime
+
+  description String @db.VarChar(255)
+  belongsTo   User   @relation(fields: [belongsToID], references: [id])
 
   @@unique([id, belongsToID])
 }

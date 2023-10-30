@@ -1,21 +1,21 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "./modules/middleware.js";
-import { getAllProjects, getProject, createProject, updateProject, deleteProject } from "./handlers/projects.js";
+import { getAllUserCampaigns, getCampaign, createCampaign, updateCampaign, deleteCampaign } from "./handlers/campaigns.js";
 
 const router = Router();
 
 // Routes for projects
 
-router.get('/project', getAllProjects)
+router.get('/campaign', getAllUserCampaigns)
 
-router.get('/project/:id', getProject)
+router.get('/campaign/:id', getCampaign)
 
-router.post('/project', body('name').isString(), handleInputErrors, createProject)
+router.post('/campaign', body('name').isString(), handleInputErrors, createCampaign)
 
-router.put('/project/:id', body('name').isString(), handleInputErrors, updateProject)
+router.put('/campaign/:id', body('name').isString(), handleInputErrors, updateCampaign)
 
-router.delete('/project/:id', deleteProject)
+router.delete('/campaign/:id', deleteCampaign)
 
 router.use((err, req, res, next) => {
     console.error(err);

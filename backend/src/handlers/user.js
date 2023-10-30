@@ -3,6 +3,7 @@ import { comparePassword, hashPassword, createJWT } from '../modules/auth.js';
 import { validationResult } from 'express-validator';
 
 
+// User signup handler
 
 export const createNewUser = async (req, res) => {
 
@@ -79,6 +80,7 @@ export const createNewUser = async (req, res) => {
         const token = createJWT(user);
         res.json({
             token: token,
+            username: user.username,
             message: 'Authenticated!'
         })
 
@@ -89,6 +91,8 @@ export const createNewUser = async (req, res) => {
     }
 }
 
+
+// User signin handler
 export const sigin = async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
