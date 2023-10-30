@@ -104,6 +104,7 @@ const Sidebar = () => {
         <SidebarLink href="#">Home</SidebarLink>
         <SidebarLink href="#">About</SidebarLink>
         <SidebarLink href="#">Contact</SidebarLink>
+        <SidebarLink href="#">Why us</SidebarLink>
       </SidebarLinkBox>
       <CopyrightBox>
         © 2023 On Chain Charity. All rights reserved.

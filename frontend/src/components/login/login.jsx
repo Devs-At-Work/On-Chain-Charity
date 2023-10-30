@@ -13,11 +13,10 @@ const ParentContainer = styled.div`
     height: 90vh;
 `;
 
-
 const LoginContainer = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     // margin: auto;
     align-items: center;
 `;
@@ -90,7 +89,18 @@ const LoginInput = styled.input`
     &:focus {
         outline: none;
     }
+`;
 
+const ShowPassword = styled.span`
+    // position: relative;
+    align-self: flex-start;
+    // left: 250px;
+    // top: 50%;
+    // right: 10px;
+    transform: translateY(-100%);
+    font-size: 10px;
+    color: #1C2C4CBC; 
+    cursor: pointer;
 `;
 
 const SubmitButton = styled.button`
@@ -136,6 +146,8 @@ const AlreadyHaveAccount = styled.p`
 `;
 
 
+
+
 const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
@@ -170,6 +182,23 @@ function validateForm() {
 }
   
 const Login = () => {
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [isOrganization, setIsOrganization] = useState(false);
+
+    const toggleSignUp = () => {
+        setIsSignUp(!isSignUp);
+    }
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const toggleOrganization = () => {
+        setIsOrganization(!isOrganization);
+    }
+
     return (
         <ParentContainer>
             <LoginContainer>
@@ -179,18 +208,39 @@ const Login = () => {
                 </LogoContainer>
                 <LoginFormContainer>
                     <LoginForm>
-                        <LoginFormHeader>Sign In</LoginFormHeader>
-                        <LoginInput type="text" id="email" name="email" placeholder="Email Address" />
-                        <LoginInput type="password" id="password" name="password" placeholder="Password" />
-                        <SubmitButton type="submit" onClick={handleSubmit}>Login</SubmitButton>
+                        
+                        <LoginFormHeader>{isSignUp ? 'Sign Up' : 'Sign In'}</LoginFormHeader>
+                        {(isSignUp && isOrganization === false) && (
+                            <>
+                                <LoginInput type="text" id="name" name="name" placeholder="Full Name" />
+                                <LoginInput type="text" id="address" name="address" placeholder="Address" />
+                            </>)}
+                        {(isOrganization && isSignUp) && (
+                            <>
+                                <LoginInput type="text" id="name" name="name" placeholder="Organization Name" />
+                                <LoginInput type="text" id="address" name="address" placeholder="Organization Address" />
+                            </>)}
+                        <LoginInput type="text" id="email" name="email" placeholder={isOrganization ? 'Organization Email' : "Email Address"} />
+                        <LoginInput type={showPassword ? "text" : "password"} id="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="new-password" name="password" placeholder="Password" />
+                        <ShowPassword onClick={togglePasswordVisibility}>{showPassword ? 'Hide password' : 'Show password'}</ShowPassword>
+                        {isSignUp && (
+                            <>
+                                <LoginInput type={showPassword ? "text" : "password"} id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+                                <ShowPassword onClick={togglePasswordVisibility}>{showPassword ? 'Hide password' : 'Show password'}</ShowPassword>
+
+                            </>
+                        )}
+                        <SubmitButton type="submit" onClick={handleSubmit}>{isSignUp ?'Sign up': 'Login'}</SubmitButton>
                     </LoginForm>
-                    <AlreadyHaveAccount>Don't have an account? <a href="/signup">Sign Up</a></AlreadyHaveAccount>
+                    {isSignUp ? 
+                        (<AlreadyHaveAccount>Existing User ? <a onClick={toggleSignUp}>Sign In</a></AlreadyHaveAccount>) :
+                        (<AlreadyHaveAccount>Don't have an account? <a onClick={toggleSignUp}>Sign Up</a></AlreadyHaveAccount>
+                    )}
                     <Divider></Divider >
-                    <AlreadyHaveAccount><a>Register as an Organization</a></AlreadyHaveAccount>
+                    <AlreadyHaveAccount><a onClick={toggleOrganization}>{(isOrganization && isSignUp) ? "Register as User" : (isOrganization === false && isSignUp) ? "Register as Organization" : (isOrganization && isSignUp=== false) ? "Login as User" : "Login as Organization"}</a></AlreadyHaveAccount>
                 </LoginFormContainer>
             </LoginContainer>
         </ParentContainer>
     );
 }
-
 export default Login;
