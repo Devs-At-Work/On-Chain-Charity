@@ -1,4 +1,4 @@
-import * as user from '../user.js';
+import { createNewUser } from "../user.js";
 
 describe('user hanlder', () => {
     it('should create a new user', async () => {
@@ -16,6 +16,6 @@ describe('user hanlder', () => {
             }
         }
 
-        await user.createNewUser(req, res, () => { });
-    })
-})
+        await createNewUser(req, res, () => { });
+    });
+});
