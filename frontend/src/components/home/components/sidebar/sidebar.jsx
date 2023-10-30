@@ -11,7 +11,7 @@ const SidebarContainer = styled.div`
   color: white;
   // justify-content: space-between;
   padding: 20px;
-  height: 100%;
+  // height: 100%;
 
   @media (max-width: 768px) {
     width: 100%;

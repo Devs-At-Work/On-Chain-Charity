@@ -5,5 +5,5 @@ body{
 .home{
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 99vh;
 }

@@ -3,26 +3,20 @@ import React from 'react';
 import styled from 'styled-components';
 import './searchbar.css';
 
-const Nav = styled.nav`
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: space-between;
+const Nav = styled.div`
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    // height: 8vh;
-    // width: 100%;
-    background-color: #C6BAD2;
-    padding: 0 20px 0 20px;
-    // position: fixed;
-    // z-index: 1;
+    justify-content: space-evenly;
+    width: 100%;
 `;
 
 const SearchBarContainer = styled.div`
     display: flex;
     flex-direction: row;
-    // justify-content: space-between;
     height: 3vh;
-    width: 50%;
-    margin: 20px 30px;
+    width: 60%;
+    margin: 20px 10px;
     align-items: center;
     border-radius: 5px;
     padding: 10px 20px 10px 20px;
@@ -33,6 +27,7 @@ const SearchImage = styled.img`
   width: 4%;
   align-self: center;
   color: #C6BAD2;
+  padding-right: 10px;
 `;
 
 const SearchInput = styled.input`
@@ -58,18 +53,25 @@ const SearchInput = styled.input`
 
 const CreateCampaign = styled.div`
     display: flex;
-    position: absolute;
+    // position: absolute;
     // flex-direction: row;
     // justify-content: space-between;
     height: 3vh;
-    // width: 50%;
-    margin: 20px 30px;
+    // width: 40%;
+    margin: 10px 10px;
     align-items: center;
     border-radius: 5px;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     border: 1px solid #C6BAD2;
     background-color: transparent;
-    `;
+
+    p{
+        color: #C6BAD2;
+        font-size: 12px;
+    }
+`;
+
+
 
 const SearchBar = () => {
     return (
@@ -77,11 +79,11 @@ const SearchBar = () => {
             <SearchBarContainer>
                 <SearchImage src='/search.png' />
                 <SearchInput placeholder='Search' />
-                
             </SearchBarContainer>
             <CreateCampaign>
-            <p>Create Campaign</p>
-                </CreateCampaign>
+                <p>Create Campaign</p>
+            </CreateCampaign>
+            <SearchImage src='/profile.png'/>
         </Nav>
     );
 };
