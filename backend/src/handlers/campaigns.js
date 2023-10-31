@@ -16,6 +16,18 @@ export const getAllUserCampaigns = async (req, res) => {
     })
 }
 
+export const getAllCampaigns = async (req, res) => {
+    const campaigns = await prisma.campaign.findMany({
+        include: {
+            belongsTo: true
+        }
+    })
+
+    res.json({
+        data: campaigns
+    })
+}
+
 // GET campaign by id
 export const getCampaign = async (req, res) => {
     const campaign = await prisma.campaign.findFirst({

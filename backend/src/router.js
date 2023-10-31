@@ -1,13 +1,15 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "./modules/middleware.js";
-import { getAllUserCampaigns, getCampaign, createCampaign, updateCampaign, deleteCampaign } from "./handlers/campaigns.js";
+import { getAllUserCampaigns, getAllCampaigns, getCampaign, createCampaign, updateCampaign, deleteCampaign } from "./handlers/campaigns.js";
 
 const router = Router();
 
 // Routes for projects
 
 router.get('/campaign', getAllUserCampaigns)
+
+router.get('/campaign/list', getAllCampaigns)
 
 router.get('/campaign/:id', getCampaign)
 

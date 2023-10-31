@@ -31,3 +31,4 @@ model Campaign {
 
   @@unique([id, belongsToID])
 }
+
