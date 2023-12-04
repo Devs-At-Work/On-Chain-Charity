@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import "./sidebar.css";
 import "@fontsource/koulen";
 import "@fontsource/nunito";
+import { Link } from 'react-router-dom';
 
 const SidebarContainer = styled.div`
   width: 18%;
@@ -17,6 +19,8 @@ const SidebarContainer = styled.div`
     width: 100%;
   }
 `;
+
+
 
 const SidebarTitle = styled.h1`
   font-family: 'Koulen', sans-serif;
@@ -96,15 +100,18 @@ const CopyrightBox = styled.div`
   // margin-top: auto;
 `;
 
+
+
 const Sidebar = () => {
   return (
     <SidebarContainer>
       <Logo />
       <SidebarLinkBox>
-        <SidebarLink href="#">Home</SidebarLink>
-        <SidebarLink href="#">About</SidebarLink>
-        <SidebarLink href="#">Contact</SidebarLink>
-        <SidebarLink href="#">Why us</SidebarLink>
+        <Link to="/home" className='sidebarlink'>Home</Link>
+        <Link to="/about" className='sidebarlink'>About</Link>
+        <Link to="/ngos" className='sidebarlink'>Ngo's</Link>
+        <Link to="/contact" className='sidebarlink'>Contact</Link>
+        <Link to="/whyus" className='sidebarlink'>Why us</Link>
       </SidebarLinkBox>
       <CopyrightBox>
         © 2023 On Chain Charity. All rights reserved.

@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { BrowserRouter, Routes, Route , redirect} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import "@fontsource/koulen";
 import "@fontsource/nunito";
@@ -10,7 +12,8 @@ const ParentContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
+    background-color: #1C2C4C;
 `;
 
 const LoginContainer = styled.div`
@@ -112,7 +115,7 @@ const SubmitButton = styled.button`
     border-radius: 10px;
     // opacity: 0.8;
     color: #1C2C4CCE;
-    background: linear-gradient(#C6BAD2 50%, #c6bad2 100%, #c6bad2 50%);
+    background: linear-gradient(to right, #C6BAD2C4 20%, #c6bad2 50%, #C6BAD2C4 80%);
     text-decoration: none;
     margin-bottom: 20px;
     position: relative;
@@ -149,8 +152,14 @@ const AlreadyHaveAccount = styled.p`
 
 
 const handleSubmit = (event) => {
+    // alert('Login successful!');
+    // alert(validateForm())
     event.preventDefault();
-    if (validateForm()) {
+    if (validateForm() === true) {
+        // alert('Login successful!');
+        // toast.success('Login successful!');
+        window.location.href = '/home';
+
         // Add your login logic here
     } else {
       toast.error('Please enter your email and password.');
@@ -172,7 +181,6 @@ function validateForm() {
             alert('Please enter your email and password.');
             return false;
         }
-  
         return true;
     }
     catch (e) {

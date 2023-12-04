@@ -7,3 +7,9 @@ body{
     flex-direction: row;
     height: 99vh;
 }
+
+.ngoBox{
+    text-decoration: none;
+    width: 40%;
+    margin-top: 30px;
+}

@@ -1,12 +1,23 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/home/home';
 import Login from './components/login/login';
+import CreateCampaign from './components/createCampaign/createCampaign';
+import NgoPage from './components/ngoPage/ngoPage';
 
 function App() {
   return (
-    <div className="App">
-     <Home/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/createCampaign" element={<CreateCampaign />} />
+        <Route path="/ngopage" element={<NgoPage/>}/>
+      </Routes>
+    </BrowserRouter>
+    // <div className="App">
+    //  <Home/>
+    // </div>
   );
 }
 

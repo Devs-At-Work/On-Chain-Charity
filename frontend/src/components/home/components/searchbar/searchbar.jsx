@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import './searchbar.css';
+import { Link } from 'react-router-dom';
 
 const Nav = styled.div`
     display: flex;
@@ -81,7 +82,9 @@ const SearchBar = () => {
                 <SearchInput placeholder='Search' />
             </SearchBarContainer>
             <CreateCampaign>
-                <p>Create Campaign</p>
+                <Link className='createCampaign' to='/createCampaign'>
+                    <p>Create Campaign</p>
+                    </Link>
             </CreateCampaign>
             <SearchImage src='/profile.png'/>
         </Nav>
