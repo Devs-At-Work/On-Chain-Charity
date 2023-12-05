@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter, Routes, Route , redirect} from 'react-router-dom';
-import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import "@fontsource/koulen";
 import "@fontsource/nunito";
@@ -165,11 +163,6 @@ const handleSubmit = (event) => {
       toast.error('Please enter your email and password.');
     }
   };
-  
-const Divider = styled.hr`
-    width: 90%;
-    background-color: #C6BAD2;
-`;
 
 function validateForm() {
     try {

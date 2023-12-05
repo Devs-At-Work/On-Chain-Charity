@@ -4,6 +4,7 @@ import Home from './components/home/home';
 import Login from './components/login/login';
 import CreateCampaign from './components/createCampaign/createCampaign';
 import CampaignPage from './components/campaignPage/campaignPage';
+import Profile from './components/profile/profile';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/createCampaign" element={<CreateCampaign />} />
         <Route path="/campaignPage" element={<CampaignPage />} />
+        <Route path='/profile' element={<Profile/>} />
       </Routes>
     </BrowserRouter>
     // <div className="App">

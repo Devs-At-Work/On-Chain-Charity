@@ -86,7 +86,9 @@ const SearchBar = () => {
                     <p>Create Campaign</p>
                     </Link>
             </CreateCampaign>
-            <SearchImage src='/profile.png'/>
+            <Link to={`/profile`} className='profile'>
+                <SearchImage src='/profile.png' />
+            </Link>
         </Nav>
     );
 };
