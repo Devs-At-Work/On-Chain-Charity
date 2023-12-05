@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import "@fontsource/koulen";
 import "@fontsource/nunito";
@@ -146,7 +147,20 @@ const AlreadyHaveAccount = styled.p`
     }
 `;
 
-
+const loginFunction = async(e) => {
+     e.preventDefault();
+     const email = document.getElementById('email').value;
+     const password = document.getElementById('password').value;
+     try {  
+         await axios.post('http://localhost:3001/user', {
+             email: email,
+             password: password
+         });
+         
+     } catch (error) {
+        
+     }
+}
 
 
 const handleSubmit = (event) => {
@@ -154,9 +168,15 @@ const handleSubmit = (event) => {
     // alert(validateForm())
     event.preventDefault();
     if (validateForm() === true) {
-        // alert('Login successful!');
-        // toast.success('Login successful!');
-        window.location.href = '/home';
+        loginFunction(event).then((res) => {
+            console.log(res);
+            res.data.success ? toast.success(res) : toast.error('Invalid email or password.');
+            // window.location.href = '/home';
+        }).catch((err) => {
+            console.log(err);
+            alert("catch:" + err);
+            toast.error('Invalid email or password.');
+        });
 
         // Add your login logic here
     } else {
@@ -204,7 +224,7 @@ const Login = () => {
                     <LogoText>On Chain Charity</LogoText>
                 </LogoContainer>
                 <LoginFormContainer>
-                    <LoginForm>
+                    <LoginForm action="POST">
                         
                         <LoginFormHeader>{isSignUp ? 'Sign Up' : 'Sign In'}</LoginFormHeader>
                         {(isSignUp) && (
