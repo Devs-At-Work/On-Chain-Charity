@@ -11,12 +11,12 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  username  String    @unique
+  id        String     @id @default(uuid())
+  username  String     @unique
   password  String
-  email     String    @unique
-  createdAt DateTime  @default(now())
-  campaigns  Campaign[]
+  email     String     @unique
+  createdAt DateTime   @default(now())
+  campaigns Campaign[]
 }
 
 model Campaign {
@@ -26,9 +26,12 @@ model Campaign {
   belongsToID String
   deadline    DateTime
 
-  description String @db.VarChar(255)
-  belongsTo   User   @relation(fields: [belongsToID], references: [id])
+  description       String @db.VarChar(255)
+  domain            String @db.VarChar(255)
+  location          String @db.VarChar(255)
+  donationRequired String @db.VarChar(255)
+  peopleInvolved    String @db.VarChar(255)
+  belongsTo         User   @relation(fields: [belongsToID], references: [id])
 
   @@unique([id, belongsToID])
 }
-
