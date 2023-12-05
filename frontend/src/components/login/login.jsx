@@ -193,7 +193,6 @@ const Login = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [isOrganization, setIsOrganization] = useState(false);
 
     const toggleSignUp = () => {
         setIsSignUp(!isSignUp);
@@ -203,9 +202,6 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
-    const toggleOrganization = () => {
-        setIsOrganization(!isOrganization);
-    }
 
     return (
         <ParentContainer>
@@ -218,17 +214,12 @@ const Login = () => {
                     <LoginForm>
                         
                         <LoginFormHeader>{isSignUp ? 'Sign Up' : 'Sign In'}</LoginFormHeader>
-                        {(isSignUp && isOrganization === false) && (
+                        {(isSignUp) && (
                             <>
                                 <LoginInput type="text" id="name" name="name" placeholder="Full Name" />
                                 <LoginInput type="text" id="address" name="address" placeholder="Address" />
                             </>)}
-                        {(isOrganization && isSignUp) && (
-                            <>
-                                <LoginInput type="text" id="name" name="name" placeholder="Organization Name" />
-                                <LoginInput type="text" id="address" name="address" placeholder="Organization Address" />
-                            </>)}
-                        <LoginInput type="text" id="email" name="email" placeholder={isOrganization ? 'Organization Email' : "Email Address"} />
+                        <LoginInput type="text" id="email" name="email" placeholder={"Email Address"} />
                         <LoginInput type={showPassword ? "text" : "password"} id="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="new-password" name="password" placeholder="Password" />
                         <ShowPassword onClick={togglePasswordVisibility}>{showPassword ? 'Hide password' : 'Show password'}</ShowPassword>
                         {isSignUp && (
@@ -244,8 +235,6 @@ const Login = () => {
                         (<AlreadyHaveAccount>Existing User ? <a onClick={toggleSignUp}>Sign In</a></AlreadyHaveAccount>) :
                         (<AlreadyHaveAccount>Don't have an account? <a onClick={toggleSignUp}>Sign Up</a></AlreadyHaveAccount>
                     )}
-                    <Divider></Divider >
-                    <AlreadyHaveAccount><a onClick={toggleOrganization}>{(isOrganization && isSignUp) ? "Register as User" : (isOrganization === false && isSignUp) ? "Register as Organization" : (isOrganization && isSignUp=== false) ? "Login as User" : "Login as Organization"}</a></AlreadyHaveAccount>
                 </LoginFormContainer>
             </LoginContainer>
         </ParentContainer>

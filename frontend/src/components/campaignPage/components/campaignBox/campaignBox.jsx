@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import "@fontsource/koulen";
-import "@fontsource/nunito";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import "../../../home/home.css"
 
 const Main = styled.div`
@@ -15,7 +13,7 @@ const Main = styled.div`
     padding-left: 20px;
     padding-right: 20px;
     margin: auto;
-    // margin-top: 30px;
+    margin-top: 4%;
     background-color: #C6BAD2C4;
     // height: 100vh;
     border-radius: 10px;
@@ -80,19 +78,20 @@ const KnowMore = styled.div`
     `;
 
 
-const NgoBox = () => {
-    // generate random number of ongoing campaigns 0 to 9
-    const ongoingCampaigns = Math.floor(Math.random() * 10);
+const CampaignBox = () => {
+    // generate random amount for donating to campaigns 1000 to 10000000
+    const amount = Math.floor(Math.random() * 10000000) + 1000;
+
     return (
-        <Link to="/ngoPage" className="ngoBox">
+        <Link to="/campaignPage" className="ngoBox">
             <Main>
                 <NgoHeader>
-                    <p>NGO Name</p>
+                    <p>Campaign 1</p>
                     <img src="/ngologo.png"/>
                 </NgoHeader>
                 <NgoDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis error voluptatem molestiae libero tenetur consequuntur cupiditate eum sunt impedit, laboriosam sequi voluptas, ut eius adipisci qui. Repellendus reprehenderit voluptatum doloremque!</NgoDescription>
                 <OngoingCampaigns>
-                    Ongoing: {ongoingCampaigns} Campaigns
+                    Donate: ₹ {amount.toLocaleString('en-IN')}
                 </OngoingCampaigns>
                 <KnowMore>
                     <p>Know More</p>
@@ -103,4 +102,4 @@ const NgoBox = () => {
     );
 }   
 
-export default NgoBox;
+export default CampaignBox;

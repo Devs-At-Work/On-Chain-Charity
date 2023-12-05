@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Sidebar from "./components/sidebar/sidebar";
 import SearchBar from "./components/searchbar/searchbar";
-import NgoBox from "./components/ngo-box/ngo_box";
 import "@fontsource/koulen";
+import CampaignBox from "../campaignPage/components/campaignBox/campaignBox";
 
 
 const Main = styled.div`
@@ -64,14 +64,14 @@ const Home = () => {
             <Main>
                 <SearchBar />
                 <SubHeader>
-                    <p>Associated NGOs</p>
+                    <p>Associated Campaigns</p>
                     <hr />
                 </SubHeader>
                 <NgoGrid>
-                    <NgoBox />
-                    <NgoBox />
-                    <NgoBox />
-                    <NgoBox />
+                    <CampaignBox />
+                    <CampaignBox />
+                    <CampaignBox />
+                    <CampaignBox />
                 </NgoGrid>
             </Main>
         </FixedContent>

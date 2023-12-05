@@ -109,7 +109,6 @@ const Sidebar = () => {
       <SidebarLinkBox>
         <Link to="/home" className='sidebarlink'>Home</Link>
         <Link to="/about" className='sidebarlink'>About</Link>
-        <Link to="/ngos" className='sidebarlink'>Ngo's</Link>
         <Link to="/contact" className='sidebarlink'>Contact</Link>
         <Link to="/whyus" className='sidebarlink'>Why us</Link>
       </SidebarLinkBox>

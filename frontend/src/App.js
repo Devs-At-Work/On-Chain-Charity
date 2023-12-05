@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/home/home';
 import Login from './components/login/login';
 import CreateCampaign from './components/createCampaign/createCampaign';
-import NgoPage from './components/ngoPage/ngoPage';
+import CampaignPage from './components/campaignPage/campaignPage';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Login />} />
         <Route path="/createCampaign" element={<CreateCampaign />} />
-        <Route path="/ngopage" element={<NgoPage/>}/>
+        <Route path="/campaignPage" element={<CampaignPage />} />
       </Routes>
     </BrowserRouter>
     // <div className="App">
