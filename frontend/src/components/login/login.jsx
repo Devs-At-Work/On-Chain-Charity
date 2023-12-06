@@ -152,13 +152,23 @@ const loginFunction = async(e) => {
      const email = document.getElementById('email').value;
      const password = document.getElementById('password').value;
      try {  
-         await axios.post('http://localhost:3001/user', {
-             email: email,
+         const response = await axios.post('http://localhost:3001/signin', {
+             username: email,
              password: password
-         });
-         
+         },
+         );
+         const { token } = response.data; // Corrected destructuring
+
+        alert(token);
+
+        if (token) {
+        localStorage.setItem('token', token);
+        return { success: true };
+        }
+
+    return response.data;
      } catch (error) {
-        
+            alert(email + password+  error);
      }
 }
 
@@ -169,9 +179,9 @@ const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm() === true) {
         loginFunction(event).then((res) => {
-            console.log(res);
-            res.data.success ? toast.success(res) : toast.error('Invalid email or password.');
-            // window.location.href = '/home';
+            // console.log(res);
+            // alert("then:" + res.username);
+            window.location.href = '/home';
         }).catch((err) => {
             console.log(err);
             alert("catch:" + err);
@@ -205,6 +215,7 @@ function validateForm() {
 const Login = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
     const toggleSignUp = () => {
@@ -232,7 +243,7 @@ const Login = () => {
                                 <LoginInput type="text" id="name" name="name" placeholder="Full Name" />
                                 <LoginInput type="text" id="address" name="address" placeholder="Address" />
                             </>)}
-                        <LoginInput type="text" id="email" name="email" placeholder={"Email Address"} />
+                        <LoginInput type="text" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"Email Address"} />
                         <LoginInput type={showPassword ? "text" : "password"} id="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="new-password" name="password" placeholder="Password" />
                         <ShowPassword onClick={togglePasswordVisibility}>{showPassword ? 'Hide password' : 'Show password'}</ShowPassword>
                         {isSignUp && (

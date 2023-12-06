@@ -17,6 +17,8 @@ const ProfileContainer = styled.div`
     }
 `;
 
+
+
 const Profile = () => {
     return (
         <ProfileContainer>
