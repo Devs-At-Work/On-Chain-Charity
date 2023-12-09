@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Sidebar from "./components/sidebar/sidebar";
 import SearchBar from "./components/searchbar/searchbar";
 import "@fontsource/koulen";
 import CampaignBox from "../campaignPage/components/campaignBox/campaignBox";
+import axios from "axios";
 
 
 const Main = styled.div`
@@ -55,9 +56,36 @@ const SubHeader = styled.div`
     }
     `;
 
+    const fetchData = async () => {
+        const storedToken = localStorage.getItem('token');
+        const JWT_TOKEN = storedToken;
+        try {
+            const response = await axios.get('http://localhost:3001/api/campaign/list', {
+                headers: {
+                  'Authorization': `Bearer ${JWT_TOKEN}`, // Replace with your actual token
+                },
+              }
+            );
+            alert(response.data);
+            console.log(response.data['data'][0]['description']);
+            return response.data['data'];
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
 
 
 const Home = () => {
+    const [campaigns, setCampaigns] = useState([]); // State to store fetched data
+
+    useEffect(() => {
+        // Call fetchData when the component is mounted
+        fetchData()
+            .then(data => setCampaigns(data)) // Update state with fetched data
+            .catch(error => console.error('Error setting state:', error));
+    }, []); // Em
+
     return (
         <FixedContent>
             <Sidebar />
@@ -68,10 +96,14 @@ const Home = () => {
                     <hr />
                 </SubHeader>
                 <NgoGrid>
-                    <CampaignBox />
-                    <CampaignBox />
-                    <CampaignBox />
-                    <CampaignBox />
+                {campaigns && campaigns.map(campaign => (
+                        <CampaignBox
+                            key={campaign.id}
+                            name={campaign.name}
+                            description={campaign.description}
+                            donationAmount={campaign.donationRequired}
+                        />
+                    ))}
                 </NgoGrid>
             </Main>
         </FixedContent>

@@ -107,6 +107,9 @@ const HeartIcon = styled(FontAwesomeIcon)`
     margin-right: 0.5em;
 `;
 
+
+
+
 const IncreasingNumber = ({ maxNumber , duration}) => {
     const [number, setNumber] = useState(0);
   

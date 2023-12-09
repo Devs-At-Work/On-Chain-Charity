@@ -78,7 +78,7 @@ const KnowMore = styled.div`
     `;
 
 
-const CampaignBox = () => {
+const CampaignBox = ({name, description, donationAmount}) => {
     // generate random amount for donating to campaigns 1000 to 10000000
     const amount = Math.floor(Math.random() * 10000000) + 1000;
 
@@ -86,12 +86,12 @@ const CampaignBox = () => {
         <Link to="/campaignPage" className="ngoBox">
             <Main>
                 <NgoHeader>
-                    <p>Campaign 1</p>
+                    <p>{name}</p>
                     <img src="/ngologo.png"/>
                 </NgoHeader>
-                <NgoDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis error voluptatem molestiae libero tenetur consequuntur cupiditate eum sunt impedit, laboriosam sequi voluptas, ut eius adipisci qui. Repellendus reprehenderit voluptatum doloremque!</NgoDescription>
+                <NgoDescription>{ description}</NgoDescription>
                 <OngoingCampaigns>
-                    Donate: ₹ {amount.toLocaleString('en-IN')}
+                    Donate: ₹ {donationAmount}
                 </OngoingCampaigns>
                 <KnowMore>
                     <p>Know More</p>
