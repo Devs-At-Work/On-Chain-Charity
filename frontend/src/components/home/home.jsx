@@ -66,7 +66,7 @@ const SubHeader = styled.div`
                 },
               }
             );
-            alert(response.data);
+            // alert(response.data);
             console.log(response.data['data'][0]['description']);
             return response.data['data'];
         } catch (error) {
@@ -86,6 +86,8 @@ const Home = () => {
             .catch(error => console.error('Error setting state:', error));
     }, []); // Em
 
+    const lastFourCampaigns = campaigns.slice(-4);
+
     return (
         <FixedContent>
             <Sidebar />
@@ -96,9 +98,10 @@ const Home = () => {
                     <hr />
                 </SubHeader>
                 <NgoGrid>
-                {campaigns && campaigns.map(campaign => (
+                {lastFourCampaigns.map(campaign => (
                         <CampaignBox
                             key={campaign.id}
+                            id={campaign.id}
                             name={campaign.name}
                             description={campaign.description}
                             donationAmount={campaign.donationRequired}

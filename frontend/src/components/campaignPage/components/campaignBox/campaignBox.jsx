@@ -78,12 +78,12 @@ const KnowMore = styled.div`
     `;
 
 
-const CampaignBox = ({name, description, donationAmount}) => {
+const CampaignBox = ({id, name, description, donationAmount}) => {
     // generate random amount for donating to campaigns 1000 to 10000000
     const amount = Math.floor(Math.random() * 10000000) + 1000;
 
     return (
-        <Link to="/campaignPage" className="ngoBox">
+        <Link to={`/campaignPage/${id}`} className="ngoBox">
             <Main>
                 <NgoHeader>
                     <p>{name}</p>

@@ -4,6 +4,8 @@ import Sidebar from "../home/components/sidebar/sidebar";
 import SearchBar from "../home/components/searchbar/searchbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const FixedContent = styled.div`
     display: flex;
@@ -130,13 +132,41 @@ const IncreasingNumber = ({ maxNumber , duration}) => {
   
 
 const CampaignPage = () => {
+
+    const { id } = useParams();
+    const [campaign, setCampaign] = useState(null);
+    const storedToken = localStorage.getItem('token');
+    const JWT_TOKEN = storedToken;
+    
+    useEffect(() => {
+        const fetchCampaignDetails = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3001/api/campaign/${id}`, {
+                    headers: {
+                      'Authorization': `Bearer ${JWT_TOKEN}`, // Replace with your actual token
+                    },
+                  });
+                // alert(response.data);
+                setCampaign(response.data['data']);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        
+        fetchCampaignDetails();
+    }, [id, JWT_TOKEN]);
+
+    if (!campaign) {
+        return <div>Loading..</div>
+    }
+
     return (
         <FixedContent>
             <Sidebar />
             <Main>
                 <SearchBar />
-                <CampaignName>Campaign name</CampaignName>
-                <CampaignDescription>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, incidunt minima? Asperiores, minus sapiente incidunt reiciendis unde, veritatis perspiciatis quas enim voluptates laboriosam magni iste beatae saepe dicta impedit dignissimos?</CampaignDescription>
+                <CampaignName>{campaign.name}</CampaignName>
+                <CampaignDescription>{campaign.description}</CampaignDescription>
                 <Row paddingTop="100px">
                     <Column>
                         <Text fontsize= "1.2em">Connected People</Text>

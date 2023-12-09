@@ -160,16 +160,17 @@ const createCampaign = async (e) => {
           headers: {
             'Authorization': `Bearer ${JWT_TOKEN}`, // Replace with your actual token
           },
-        }
+          timeout: 60000000,
+        },
       );
-        
         alert(JWT_TOKEN)
       console.log('Campaign created successfully:', response.data);
       // Perform additional actions after creating the campaign if needed
     } catch (error) {
         console.error('Error creating campaign:', error);
-        alert(JWT_TOKEN);
-      alert(error); // Notify the user about the error
+    console.error('Error details:', error.response.data); // Log additional details
+    alert(JWT_TOKEN);
+    alert(error); // Notify the user about the error
     }
   };
   
